@@ -14,7 +14,7 @@ namespace ProductTestProject.Utility
             string folderPath = Path.Combine(projectRoot, "Data");
 
             Directory.CreateDirectory(folderPath);
-            string filePath = Path.Combine(folderPath, fileName+".json");
+            string filePath = Path.Combine(folderPath, fileName + ".json");
 
             // Serialize the object to a JSON string
             string jsonString = System.Text.Json.JsonSerializer.Serialize(request, new JsonSerializerOptions { WriteIndented = true });

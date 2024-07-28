@@ -12,7 +12,7 @@ public class GetProductsTest
     private string url = "https://api.restful-api.dev/objects";
 
     [Fact]
-    public async Task Test_GetProducts_ReturnsSuccess()
+    public async Task Test_GetProducts_ReturnSuccess()
     {
         // Arrange
         dynamic response = await new GetProductRequest().GetProduct(url);

@@ -9,7 +9,7 @@ namespace ProductTestProject.calls
 
         public async Task<dynamic> PutProduct(String url, ProductRequest productRequest)
         {
-            var result =  await restClient.PutAsJsonAsync(url, productRequest);
+            var result = await restClient.PutAsJsonAsync(url, productRequest);
             return result;
         }
     }
