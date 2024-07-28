@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 public class GetProductsTest
 {
+    // Act
     private string url = "https://api.restful-api.dev/objects";
 
     [Fact]

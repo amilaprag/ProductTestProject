@@ -48,7 +48,7 @@ namespace ProductTestProject
             dynamic response = await new PostProductRequest().PostProduct(request);
 
             // Assert
-            Assert.Equal("application/json", response.Result.Content.Headers.ContentType.MediaType);
+            Assert.Equal("application/json", response.Content.Headers.ContentType.MediaType);
         }
 
         [Fact]
@@ -65,7 +65,7 @@ namespace ProductTestProject
             Assert.Equal(100, responseModel.data.price);
             Assert.Equal("Intel Core i9", responseModel.data.CPUmodel);
             Assert.Equal("1 TB", responseModel.data.Harddisksize);
-            Assert.Equal(1992,responseModel.data.year );
+            Assert.Equal(1992, responseModel.data.year);
         }
 
         [Fact]
