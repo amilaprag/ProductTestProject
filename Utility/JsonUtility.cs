@@ -16,10 +16,7 @@ namespace ProductTestProject.Utility
             Directory.CreateDirectory(folderPath);
             string filePath = Path.Combine(folderPath, fileName + ".json");
 
-            // Serialize the object to a JSON string
             string jsonString = System.Text.Json.JsonSerializer.Serialize(request, new JsonSerializerOptions { WriteIndented = true });
-
-            // Write the JSON string to the file
             File.WriteAllText(filePath, jsonString);
         }
 
@@ -33,10 +30,7 @@ namespace ProductTestProject.Utility
             if (File.Exists(filePath))
             {
                 string jsonString = File.ReadAllText(filePath);
-
-                // Deserialize the JSON string into an object
                 dynamic data = JsonConvert.DeserializeObject<object>(jsonString);
-
                 return data;
             }
             else
@@ -45,5 +39,6 @@ namespace ProductTestProject.Utility
                 return null;
             }
         }
+
     }
 }
