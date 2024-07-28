@@ -7,7 +7,7 @@ using Xunit.Extensions.Ordering;
 
 namespace ProductTestProject
 {
-    public class DeleteProductTest
+    public class E_DeleteProductTest
     {
         // Act
         private string url = "https://api.restful-api.dev/objects/";

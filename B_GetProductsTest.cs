@@ -6,7 +6,7 @@ using ProductTestProject.Response;
 using System.Net;
 using System.Threading.Tasks;
 
-public class GetProductsTest
+public class B_GetProductsTest
 {
     // Act
     private string url = "https://api.restful-api.dev/objects";

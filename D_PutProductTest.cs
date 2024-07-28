@@ -8,7 +8,7 @@ using Xunit.Extensions.Ordering;
 
 namespace ProductTestProject
 {
-    public class PutProductTest
+    public class D_PutProductTest
     {
         //Act
         private string url = "https://api.restful-api.dev/objects/";

@@ -7,7 +7,7 @@ using System.Net;
 
 namespace ProductTestProject
 {
-    public class PostProductTest
+    public class C_PostProductTest
     {
         // Act
         private ProductRequest request = new ProductRequest

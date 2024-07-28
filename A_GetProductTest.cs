@@ -6,10 +6,10 @@ using Xunit.Extensions.Ordering;
 
 namespace ProductTestProject
 {
-    public class GetProductTest
+    public class A_GetProductTest
     {
         // Act
-        private string url = "https://api.restful-api.dev/objects/7";
+        private string url = "https://api.restful-api.dev/objects/4";
 
         [Fact, Order(1)]
         public async Task Test_GetProduct_ReturnSuccess()
@@ -65,8 +65,9 @@ namespace ProductTestProject
             // Assert
             Assert.NotNull(responseModel.id);
             Assert.NotNull(responseModel.name);
+            Assert.NotNull(responseModel.data.price);
             Assert.NotNull(responseModel.data.color);
-            Assert.NotNull(responseModel.data.capacity);
+           
         }
     }
 }
