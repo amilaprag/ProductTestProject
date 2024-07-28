@@ -1,20 +1,28 @@
 using Newtonsoft.Json;
 using ProductTestProject.calls;
 using ProductTestProject.Response;
+using ProductTestProject.Utility;
 using System.Net;
 using Xunit.Extensions.Ordering;
 
 namespace ProductTestProject
 {
-    public class A_GetProductTest
+    [Order(3)]
+    public class GetProductTest
     {
-        // Act
-        private string url = "https://api.restful-api.dev/objects/4";
+        // Arrange
+        private string BaseUrl = ConfigUtility.GetConfiguration();
+
+        private dynamic savedRequest = JsonUtility.ReadJson("PostProductResponse");
+        private string url = "";
 
         [Fact, Order(1)]
         public async Task Test_GetProduct_ReturnSuccess()
         {
             // Arrange
+            url = BaseUrl + savedRequest.id;
+
+            // Act
             dynamic response = await new GetProductRequest().GetProduct(url);
 
             // Assert
@@ -25,6 +33,9 @@ namespace ProductTestProject
         public async Task Test_GetProduct_ShouldNotNull()
         {
             // Arrange
+            url = BaseUrl + savedRequest.id;
+
+            // Act
             dynamic response = await new GetProductRequest().GetProduct(url);
 
             // Assert
@@ -35,6 +46,9 @@ namespace ProductTestProject
         public async Task Test_GetProduct_CheckContentType()
         {
             // Arrange
+            url = BaseUrl + savedRequest.id;
+
+            // Act
             dynamic response = await new GetProductRequest().GetProduct(url);
 
             // Assert
@@ -44,10 +58,10 @@ namespace ProductTestProject
         [Fact, Order(4)]
         public async Task Test_PutProduct_ShouldReturnNotFound_WhenResourceDoesNotExist()
         {
-            // Act
-            url = "https://api.restful-api.dev/objects/117";
-
             // Arrange
+            url = BaseUrl + savedRequest.id + "hjiukliu";
+
+            // Act
             dynamic response = await new GetProductRequest().GetProduct(url);
 
             // Assert
@@ -58,6 +72,9 @@ namespace ProductTestProject
         public async Task Test_GetProducts_ValidateSchema()
         {
             // Arrange
+            url = BaseUrl + savedRequest.id;
+
+            // Act
             dynamic response = await new GetProductRequest().GetProduct(url);
             var responseObject = await response.Content.ReadAsStringAsync();
             ProductResponse responseModel = JsonConvert.DeserializeObject<ProductResponse>(responseObject);
@@ -67,7 +84,6 @@ namespace ProductTestProject
             Assert.NotNull(responseModel.name);
             Assert.NotNull(responseModel.data.price);
             Assert.NotNull(responseModel.data.color);
-           
         }
     }
 }

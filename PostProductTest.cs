@@ -4,12 +4,14 @@ using ProductTestProject.Request;
 using ProductTestProject.Response;
 using ProductTestProject.Utility;
 using System.Net;
+using Xunit.Extensions.Ordering;
 
 namespace ProductTestProject
 {
-    public class C_PostProductTest
+    [Order(2)]
+    public class PostProductTest
     {
-        // Act
+        // Arrange
         private ProductRequest request = new ProductRequest
         {
             name = "Apple MacBook Pro 16",
@@ -25,7 +27,7 @@ namespace ProductTestProject
         [Fact]
         public async void Test_PostProduct_ReturnSucess()
         {
-            // Arrange
+            // Act
             dynamic response = await new PostProductRequest().PostProduct(request);
 
             // Assert
@@ -35,7 +37,7 @@ namespace ProductTestProject
         [Fact]
         public async Task Test_PostProduct_ShouldNotNull()
         {
-            // Arrange
+            // Act
             dynamic response = await new PostProductRequest().PostProduct(request);
 
             // Assert
@@ -45,7 +47,7 @@ namespace ProductTestProject
         [Fact]
         public async Task Test_PostProduct_CheckContentType()
         {
-            // Arrange
+            // Act
             dynamic response = await new PostProductRequest().PostProduct(request);
 
             // Assert
@@ -55,7 +57,7 @@ namespace ProductTestProject
         [Fact]
         public async Task Test_PostProduct_ValidateSchema()
         {
-            // Arrange
+            // Act
             dynamic response = await new PostProductRequest().PostProduct(request);
             var responseObject = await response.Content.ReadAsStringAsync();
             ProductResponse responseModel = JsonConvert.DeserializeObject<ProductResponse>(responseObject);
@@ -75,10 +77,10 @@ namespace ProductTestProject
         [Fact]
         public async Task Test_PostProduct_CheckBadRequest()
         {
-            //Act
+            // Arrange
             ProductRequest request = null;
 
-            // Arrange
+            // Act
             dynamic response = await new PostProductRequest().PostProduct(request);
 
             // Assert

@@ -3,18 +3,21 @@ namespace ProductTestProject;
 using Newtonsoft.Json;
 using ProductTestProject.calls;
 using ProductTestProject.Response;
+using ProductTestProject.Utility;
 using System.Net;
 using System.Threading.Tasks;
+using Xunit.Extensions.Ordering;
 
-public class B_GetProductsTest
+[Order(1)]
+public class GetProductsTest
 {
-    // Act
-    private string url = "https://api.restful-api.dev/objects";
+    // Arrange
+    private string url = ConfigUtility.GetConfiguration();
 
     [Fact]
     public async Task Test_GetProducts_ReturnSuccess()
     {
-        // Arrange
+        // Act
         dynamic response = await new GetProductRequest().GetProduct(url);
 
         // Assert
@@ -24,7 +27,7 @@ public class B_GetProductsTest
     [Fact]
     public async Task Test_GetProducts_ShouldNotNull()
     {
-        // Arrange
+        // Act
         dynamic response = await new GetProductRequest().GetProduct(url);
 
         // Assert
@@ -34,7 +37,7 @@ public class B_GetProductsTest
     [Fact]
     public async Task Test_GetProducts_CheckContentType()
     {
-        // Arrange
+        // Act
         dynamic response = await new GetProductRequest().GetProduct(url);
 
         // Assert
@@ -44,7 +47,7 @@ public class B_GetProductsTest
     [Fact]
     public async Task Test_GetProducts_CheckProductSize()
     {
-        // Arrange
+        // Act
         dynamic response = await new GetProductRequest().GetProduct(url);
         var responseObject = await response.Content.ReadAsStringAsync();
         List<ProductResponse> responseModel = JsonConvert.DeserializeObject<List<ProductResponse>>(responseObject);
@@ -56,7 +59,7 @@ public class B_GetProductsTest
     [Fact]
     public async Task Test_GetProducts_ValidateSchema()
     {
-        // Arrange
+        // Act
         dynamic response = await new GetProductRequest().GetProduct(url);
         var responseObject = await response.Content.ReadAsStringAsync();
         List<ProductResponse> responseModel = JsonConvert.DeserializeObject<List<ProductResponse>>(responseObject);

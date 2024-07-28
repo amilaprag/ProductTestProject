@@ -8,9 +8,10 @@ using Xunit.Extensions.Ordering;
 
 namespace ProductTestProject
 {
-    public class D_PutProductTest
+    [Order(4)]
+    public class PutProductTest
     {
-        //Act
+        // Arrange
         private string url = "https://api.restful-api.dev/objects/";
 
         private dynamic savedRequest = JsonUtility.ReadJson("PostProductResponse");
@@ -30,10 +31,10 @@ namespace ProductTestProject
         [Fact, Order(1)]
         public async Task Test_PutProduct_ReturnsSuccess()
         {
-            // Act
+            // Arrange
             url = url + savedRequest.id;
 
-            // Arrange
+            // Act
             dynamic response = await new PutProductRequest().PutProduct(url, request);
 
             // Assert
@@ -43,10 +44,10 @@ namespace ProductTestProject
         [Fact, Order(2)]
         public async Task Test_PutProduct_ShouldNotNull()
         {
-            // Act
+            // Arrange
             url = url + savedRequest.id;
 
-            // Arrange
+            // Act
             dynamic response = await new PutProductRequest().PutProduct(url, request);
 
             // Assert
@@ -56,10 +57,10 @@ namespace ProductTestProject
         [Fact, Order(3)]
         public async Task Test_PutProduct_CheckContentType()
         {
-            // Act
+            // Arrange
             url = url + savedRequest.id;
 
-            // Arrange
+            // Act
             dynamic response = await new PutProductRequest().PutProduct(url, request);
 
             // Assert
@@ -69,10 +70,10 @@ namespace ProductTestProject
         [Fact, Order(4)]
         public async Task Test_PutProduct_ValidateSchema()
         {
-            // Act
+            // Arrange
             url = url + savedRequest.id;
 
-            // Arrange
+            // Act
             dynamic response = await new PutProductRequest().PutProduct(url, request);
             var responseObject = await response.Content.ReadAsStringAsync();
             ProductResponse responseModel = JsonConvert.DeserializeObject<ProductResponse>(responseObject);
@@ -89,11 +90,11 @@ namespace ProductTestProject
         [Fact, Order(5)]
         public async Task Test_PutProduct_CheckBadRequest()
         {
-            // Act
+            // Arrange
             url = url + savedRequest.id;
             ProductRequest request = null;
 
-            // Arrange
+            // Act
             dynamic response = await new PutProductRequest().PutProduct(url, request);
 
             // Assert

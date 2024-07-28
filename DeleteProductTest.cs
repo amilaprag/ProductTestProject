@@ -2,15 +2,17 @@ using Newtonsoft.Json;
 using ProductTestProject.calls;
 using ProductTestProject.Request;
 using ProductTestProject.Response;
+using ProductTestProject.Utility;
 using System.Net;
 using Xunit.Extensions.Ordering;
 
 namespace ProductTestProject
 {
-    public class E_DeleteProductTest
+    [Order(5)]
+    public class DeleteProductTest
     {
-        // Act
-        private string url = "https://api.restful-api.dev/objects/";
+        // Arrange
+        private string url = ConfigUtility.GetConfiguration();
 
         private ProductRequest request = new ProductRequest
         {
@@ -35,10 +37,10 @@ namespace ProductTestProject
         [Fact, Order(1)]
         public async Task Test_DeleteProduct_ReturnSuccess()
         {
-            // Act
+            // Arrange
             url = url + await PostProduct();
 
-            // Arrange
+            // Act
             dynamic response = await new DeleteProdutRequest().DeleteProduct(url);
 
             // Assert
@@ -48,10 +50,10 @@ namespace ProductTestProject
         [Fact, Order(2)]
         public async Task Test_DeleteProduct_ShouldNotNull()
         {
-            // Act
+            // Arrange
             url = url + await PostProduct();
 
-            // Arrange
+            // Act
             dynamic response = await new DeleteProdutRequest().DeleteProduct(url);
 
             // Assert
@@ -61,10 +63,10 @@ namespace ProductTestProject
         [Fact, Order(3)]
         public async Task Test_DeleteProduct_CheckContentType()
         {
-            // Act
+            // Arrange
             url = url + await PostProduct();
 
-            // Arrange
+            // Act
             dynamic response = await new DeleteProdutRequest().DeleteProduct(url);
 
             // Assert
@@ -74,10 +76,10 @@ namespace ProductTestProject
         [Fact, Order(4)]
         public async Task Test_DeleteProduct_ShouldReturnNotFound_WhenResourceDoesNotExist()
         {
-            // Act
+            // Arrange
             url = url + 1111;
 
-            // Arrange
+            // Act
             dynamic response = await new DeleteProdutRequest().DeleteProduct(url);
 
             // Assert
@@ -87,11 +89,11 @@ namespace ProductTestProject
         [Fact, Order(5)]
         public async Task Test_DeleteProduct__ValidateSchema()
         {
-            // Act
+            // Arrange
             string id = await PostProduct();
             url = url + id;
 
-            // Arrange
+            // Act
             dynamic response = await new DeleteProdutRequest().DeleteProduct(url);
             var responseObject = await response.Content.ReadAsStringAsync();
             DeleteProductResponse responseModel = JsonConvert.DeserializeObject<DeleteProductResponse>(responseObject);
