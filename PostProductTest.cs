@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using ProductTestProject.calls;
 using ProductTestProject.Request;
 using ProductTestProject.Response;
+using ProductTestProject.Utility;
 using System.Net;
 
 namespace ProductTestProject
@@ -66,6 +67,9 @@ namespace ProductTestProject
             Assert.Equal("Intel Core i9", responseModel.data.CPUmodel);
             Assert.Equal("1 TB", responseModel.data.Harddisksize);
             Assert.Equal(1992, responseModel.data.year);
+
+            // store Id to use in put request
+            JsonUtility.SavedJson(responseModel, "PostProductResponse");
         }
 
         [Fact]
