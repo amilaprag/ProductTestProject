@@ -8,7 +8,7 @@ Getting Started with this Project
 Follow these instructions to set up and run the tests locally.
 
 ### Prerequisites
-.NET SDK: Ensure you have the .NET 6 SDK installed. You can download it from the .NET official website.IDE: While not required, using an IDE such as Visual Studio or Visual Studio Code can help you run and debug tests.
+.NET SDK: Ensure you have the .NET 8 SDK installed. You can download it from the .NET official website.IDE: While not required, using an IDE such as Visual Studio or Visual Studio Code can help you run and debug tests.
 Setting Up the Project
 
 For next step, clone this repo, and run 
