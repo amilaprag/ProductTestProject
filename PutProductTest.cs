@@ -12,7 +12,8 @@ namespace ProductTestProject
     public class PutProductTest
     {
         // Arrange
-        private string url = "https://api.restful-api.dev/objects/";
+        // private string url = "https://api.restful-api.dev/objects/";
+        private string url = ConfigUtility.GetConfiguration() + "/";
 
         private dynamic savedRequest = JsonUtility.ReadJson("PostProductResponse");
 

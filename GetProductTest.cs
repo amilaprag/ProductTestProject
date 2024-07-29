@@ -11,7 +11,7 @@ namespace ProductTestProject
     public class GetProductTest
     {
         // Arrange
-        private string BaseUrl = ConfigUtility.GetConfiguration();
+        private string BaseUrl = ConfigUtility.GetConfiguration() + "/";
 
         private dynamic savedRequest = JsonUtility.ReadJson("PostProductResponse");
         private string url = "";
@@ -83,7 +83,7 @@ namespace ProductTestProject
             Assert.NotNull(responseModel.id);
             Assert.NotNull(responseModel.name);
             Assert.NotNull(responseModel.data.price);
-            Assert.NotNull(responseModel.data.color);
+            Assert.NotNull(responseModel.data.CPUmodel);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace ProductTestProject
     public class DeleteProductTest
     {
         // Arrange
-        private string url = ConfigUtility.GetConfiguration();
+        private string url = ConfigUtility.GetConfiguration() + "/";
 
         private ProductRequest request = new ProductRequest
         {
